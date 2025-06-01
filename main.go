@@ -1,8 +1,7 @@
 package main
 
 import (
-	// "encoding/json"
-	"flag"
+	//	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -20,126 +19,36 @@ type TodoList struct {
 	Todos []Todo `json:"todos"`
 }
 
-func GetConfigDir() (string, error) {
+func GetTodosPath() (string, error) {
 	homeDir, err := os.UserHomeDir()
-
 	if err != nil {
-		return "", fmt.Errorf("failed to get home directory: %w", err)
+		return "", err
 	}
 
 	configDir := filepath.Join(homeDir, ".config", "devtodo-cli")
-
-	return configDir, nil
-}
-
-func EnsureConfigDirExists() (string, error) {
-	configDir, err := GetConfigDir()
-
-	if err != nil {
-		return "", err
-	}
-
 	err = os.MkdirAll(configDir, 0755)
-
-	if err != nil {
-		return "", fmt.Errorf("failed to create config directory: %w", err)
-	}
-
-	return configDir, nil
-}
-
-func GetTodosFilePath() (string, error) {
-	configDir, err := GetConfigDir()
-
 	if err != nil {
 		return "", err
 	}
 
-	return filepath.Join(configDir, "todos.json"), nil
+	result := filepath.Join(configDir, "todos.json")
+
+	return result, nil
 }
-
-// func LoadTodos() (TodoList, error) {
-// 	var todoList TodoList
-//
-// 	todosFilePath, err := GetTodosFilePath()
-//
-// 	if err != nil {
-// 		return todoList, err
-// 	}
-//
-// 	if _, err := os.Stat(todosFilePath); os.IsNotExist(err) {
-// 		return TodoList{Todos: []Todo{}}, nil
-// 	}
-//
-// 	fileData, err := os.ReadFile(todosFilePath)
-//
-// 	if err != nil {
-// 		return todoList, fmt.Errorf("failed to read todos file: %w", err)
-// 	}
-//
-// 	if len(fileData) == 0 {
-// 		return TodoList{Todos: []Todo{}}, nil
-// 	}
-//
-// 	err = json.Unmarshal(fileData, &todoList)
-//
-// 	if err != nil {
-// 		return todoList, fmt.Errorf("failed to parse todos file: %w", err)
-// 	}
-//
-// 	return todoList, nil
-// }
-
-// func SaveTodos(todoList TodoList) error {
-// 	configDir, err := EnsureConfigDirExists()
-//
-// 	if err != nil {
-// 		return err
-// 	}
-//
-// 	todosFilePath := filepath.Join(configDir, "todos.json")
-//
-// 	fileData, err := json.MarshalIndent(todoList, "", "  ")
-//
-// 	if err != nil {
-// 		return fmt.Errorf("failed to marshal todos: %w", err)
-// 	}
-//
-// 	err = os.WriteFile(todosFilePath, fileData, 0644)
-//
-// 	if err != nil {
-// 		return fmt.Errorf("failed to write todos file: %w", err)
-// 	}
-//
-// 	return nil
-// }
 
 func main() {
-	_, err := EnsureConfigDirExists()
-
+	todosPath, err := GetTodosPath()
 	if err != nil {
-		fmt.Printf("Error creating config directory: %v\n", err)
-
+		fmt.Printf("failed to create config directory: %v", err)
 		return
 	}
 
-	// Define command-line flags
-	showAllFlag := flag.Bool("-a", false, "Show all todos including completed ones")
-	testFlag := flag.Bool("-t", false, "Test Flag")
+	//	showAll := flag.Bool("sa", false, "Show all todos")
+	//	addTodo := flag.Bool("at", false, "Add a new todo")
+	//
+	//	flag.Parse()
 
-	// Parse the flags
-	flag.Parse()
-
-	args := flag.Args()
-
-	fmt.Printf("args => %v\n", args)
-
-	if len(args) == 0 {
-		fmt.Println("default command")
-
-		return
-	}
-
-	fmt.Printf("Show All Flag => %v", showAllFlag)
-	fmt.Printf("Test Flag => %v", testFlag)
+	fmt.Printf("todosPath => %v\n", todosPath)
+	//  fmt.Printf("*showAll => %v\n", *showAll)
+	//  fmt.Printf("naddTodo => %v\n", *addTodo)
 }
