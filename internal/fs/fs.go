@@ -17,13 +17,12 @@ func GetConfig() (*types.Config, error) {
 	}
 
 	configDir := filepath.Join(homeDir, ".config", "todo-cli")
+	configPath := filepath.Join(configDir, "config.json")
 
 	err = os.MkdirAll(configDir, 0755)
 	if err != nil {
 		return nil, err
 	}
-
-	configPath := filepath.Join(configDir, "todos.json")
 
 	_, err = os.Stat(configPath)
 	if os.IsNotExist(err) {
@@ -72,7 +71,7 @@ func SaveConfig(config *types.Config) error {
 	}
 
 	configDir := filepath.Join(homeDir, ".config", "todo-cli")
-	configPath := filepath.Join(configDir, "todos.json")
+	configPath := filepath.Join(configDir, "config.json")
 
 	configData, err := json.MarshalIndent(config, "", "  ")
 	if err != nil {
