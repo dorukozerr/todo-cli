@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	err := ui.AddNewGroup()
+	err := ui.RenderGroupsMenu()
 	if err != nil {
-		fmt.Printf("Error creating a new group: %v", err)
+		fmt.Printf("Error on group menu: %v", err)
 	}
 
 	// showAll := flag.Bool("sa", false, "Show all todos")

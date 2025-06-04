@@ -160,6 +160,7 @@ func SetActiveGroup(groupName string) error {
 	for _, group := range config.Groups {
 		if group.Name == groupName {
 			found = true
+
 			break
 		}
 	}
