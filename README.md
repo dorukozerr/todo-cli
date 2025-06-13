@@ -14,7 +14,7 @@ sudo mkdir -p /usr/local/share/zsh/site-functions &&
 sudo mkdir -p /etc/bash_completion.d &&
 todo completion zsh | sudo tee /usr/local/share/zsh/site-functions/_todo > /dev/null &&
 todo completion bash | sudo tee /etc/bash_completion.d/todo > /dev/null &&
-cd
+cd &&
 rm -rf ~/todo-cli
 ```
 
