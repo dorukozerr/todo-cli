@@ -128,7 +128,7 @@ func displayTodosByGroup(todos []types.Todo) {
 		}
 		first = false
 
-		fmt.Printf("\n%sGroup: %s%s\n", config.Cyan+config.Bold, groupName, config.Reset)
+		fmt.Printf("\n%s%s%s\n", config.Cyan+config.Bold, groupName, config.Reset)
 		fmt.Println(strings.Repeat("-", 20))
 		displayTodosList(groupTodos)
 	}
