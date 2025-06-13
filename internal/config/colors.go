@@ -1,4 +1,4 @@
-package colors
+package config
 
 const (
 	Reset     = "\033[0m"
