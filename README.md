@@ -8,7 +8,8 @@ Another cli todo app
 git clone git@github.com:dorukozerr/todo-cli.git ~/todo-cli &&
 cd ~/todo-cli &&
 go build -o todo &&
-sudo mv todo /usr/local/bin/todo &&
+sudo mkdir -p /usr/local/bin &&
+sudo mv todo /usr/local/bin &&
 cd
 ```
 
