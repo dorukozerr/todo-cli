@@ -10,8 +10,18 @@ cd ~/todo-cli &&
 go build -o todo &&
 sudo mkdir -p /usr/local/bin &&
 sudo mv todo /usr/local/bin &&
+sudo mkdir -p /usr/local/share/zsh/site-functions &&
+sudo mkdir -p /etc/bash_completion.d &&
+todo completion zsh | sudo tee /usr/local/share/zsh/site-functions/_todo > /dev/null &&
+todo completion bash | sudo tee /etc/bash_completion.d/todo > /dev/null &&
 cd
+rm -rf ~/todo-cli
 ```
+
+**Note**: After installation, you may need to restart your terminal or run:
+
+- For zsh: `source ~/.zshrc`
+- For bash: `source ~/.bashrc`
 
 ### Prerequisites
 
