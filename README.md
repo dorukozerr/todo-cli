@@ -18,14 +18,19 @@ cd &&
 rm -rf ~/todo-cli
 ```
 
-**Note**: After installation, you may need to restart your terminal or run:
+## Deletion
 
-- For zsh: `source ~/.zshrc`
-- For bash: `source ~/.bashrc`
+```bash
+sudo rm /usr/local/bin/todo &&
+sudo rm /etc/bash_completion.d/todo &&
+sudo rm /usr/local/share/zsh/site-functions/_todo
+```
+
+## **Note**: After installation, you need to restart your terminal
 
 ### Prerequisites
 
-- Go 1.19 or higher installed on your system
+- Go
 
 ### Usage
 
